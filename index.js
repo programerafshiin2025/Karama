@@ -8,7 +8,7 @@ const port=6000;
 
 app.get('/', async(req, res)=>{
           const GesTasks=await Tasks.find()
-          res.json(GesTasks)
+          res.status(200).json(GesTasks)
 })
 
 
@@ -19,7 +19,7 @@ app.post('/', async(req, res)=>{
                     title,date,finished
           });
           const PutTasks= await NewTask.save();
-          res.json(PutTasks)
+          res.status(201).json(PutTasks)
 
 })
 
@@ -32,7 +32,7 @@ app.put('/:id', async(req, res)=>{
                     putTask.finished=finished
 
                     const UpdateTask=await putTask.save();
-                    res.json(UpdateTask)
+                    res.status(200).json(UpdateTask)
           }
 
 
@@ -42,7 +42,7 @@ app.put('/:id', async(req, res)=>{
 app.delete('/:id', async(req, res)=>{
 
           const DeleteTask=await Tasks.findByIdAndDelete(req.params.id)
-          res.json({message:"Task Deleted"})
+          res.status(200).json({message:"Task Deleted"})
 })
 
 
